@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.hd>
-#include <string.hd>
 
 //contas globais
 #define MAX_CARTAS 100
@@ -16,12 +14,12 @@
 //definição de esttutura
 struct Cartas{
     char Estado[TAM_STRING];
-    int Codigo[10];
-    char Nome da cidade[TAM_STRING];
-    char Populacao[TAM_STRING];
-    int Area[30];
+    char Codigo[10];
+    char Cidade[10]; 
+    char População[TAM_STRING];
+    char Area[30];
     int PIB[30];
-    int Numero pontos Turísticos[10]
+    int Numero_Pontos_Turísticos[10];
 };
 
 //limpar buffer
@@ -31,11 +29,9 @@ void limparBufferEntrada(){
 }
 
 int main() {
-    printf("Desafio Super Trunfo - Paises!\n");}
+    printf("Desafio Super Trunfo - Paises!\n");};
    
-    {
-        /* data */
-    };
+ 
     
     // Definição das variáveis para armazenar as propriedades das cidades
     // Você pode utilizar o código do primeiro desafio
@@ -71,5 +67,5 @@ int main() {
     // Exemplo:
     // printf("A cidade vencedora é: %s\n", cidadeVencedora);
 
-    return 0;
-}
+
+

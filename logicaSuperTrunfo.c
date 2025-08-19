@@ -1,12 +1,37 @@
 #include <stdio.h>
+#include <stdlib.hd>
+#include <string.hd>
+
+//contas globais
+#define MAX_CARTAS 100
+#define TAM_STRING 50
 
 // Desafio Super Trunfo - Países
 // Tema 2 - Comparação das Cartas
 // Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
 // Siga os comentários para implementar cada parte do desafio.
+ //Descrição do problema: O código não possui as variáveis necessárias para armazenar...
+    // ...os dados das duas cartas (Estado, Código, Nome da Cidade, População, Área, PIB, Nº Pontos Turísticos).
+
+//definição de esttutura
+struct Cartas{
+    char Estado[TAM_STRING];
+    int Codigo[10];
+    char Nome da cidade[TAM_STRING];
+    char Populacao[TAM_STRING];
+    int Area[30];
+    int PIB[30];
+    int Numero pontos Turísticos[10]
+};
+
+//limpar buffer
+void limparBufferEntrada(){
+    int c;
+    while ((c = getchar())!='\n' && c!=EOF);
+}
 
 int main() {
-    printf("Desafio Super Trunfo - Paises!\n");
+    printf("Desafio Super Trunfo - Paises!\n");}
    
     {
         /* data */
@@ -14,9 +39,7 @@ int main() {
     
     // Definição das variáveis para armazenar as propriedades das cidades
     // Você pode utilizar o código do primeiro desafio
-    
-
-
+   
 
     
     // Cadastro das Cartas:

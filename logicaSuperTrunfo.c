@@ -13,10 +13,10 @@
 
 //definição de esttutura
 struct Cartas{
+    char Cidade[TAM_STRING];
     char Estado[TAM_STRING];
-    char Codigo[10];
-    char Cidade[10]; 
-    char População[TAM_STRING];
+    char Codigo[10]; 
+    char Populacao[TAM_STRING];
     char Area[30];
     int PIB[30];
     int Numero_Pontos_Turísticos[10];
@@ -29,8 +29,53 @@ void limparBufferEntrada(){
 }
 
 int main() {
-    printf("Desafio Super Trunfo - Paises!\n");};
+    //printf("Desafio Super Trunfo - Paises!\n")...nao sei porque o Sergio Cardoso pediu para colocar esta linha...parece outro desafio???;
+    struct Cartas Cadastro[MAX_CARTAS];
+    int totalCartas = 0;
+    int opcao;    
+};
    
+ //laço menu em tela
+ printf('=====================================');
+ printf('  CADASTRO - PARTE 1\n');
+ printf('1-Cadastrar nova cidade\n');
+ printf('2-Listar todas cidades\n');
+ printf('0-Sair');
+ printf('Escolha a opção\n');
+
+ //Lê o menu que foi digitado e, depois com comando limparBufferEntrada limpa o buffer de entrada (nova precaução)
+ scanf('%d', &opcao);
+ limparBufferEntrada();
+
+ //verificando total de cadastros efetuados
+ switch (opcao)
+ {
+ case 1: //cadastro da cidade
+ printf('----Cadastro da Cidade\n\n');
+
+ if (totalCartas < MAX_CARTAS){
+    printf('Digite nome da Cidade:   ');
+    fgets(Cadastro[totalCartas].Cidade, TAM_STRING, stdin);
+
+    printf('Digite nome da Estado:   ');
+    fgets(Cadastro[totalCartas].Estado, TAM_STRING, stdin);
+
+    printf('Digite nome da Codigo:   '); //acredito que não precisa deste item, entendo ser automatico? mas coloquei assim mesmo
+    fgets(Cadastro[totalCartas].Codigo, TAM_STRING, stdin);
+
+    printf('Digite nome da População:   ');
+    fgets(Cadastro[totalCartas].Populacao, TAM_STRING, stdin);
+
+    printf('Digite nome da Area:   ');
+    fgets(Cadastro[totalCartas].Area, TAM_STRING, stdin);
+
+    printf('Digite nome da PIB:   ');
+    fgets(Cadastro[totalCartas].PIB, TAM_STRING, stdin);
+
+    printf('Digite nome da Número de pontos turisticos:   ');
+    fgets(Cadastro[totalCartas].Numero_Pontos_Turísticos, TAM_STRING, stdin);
+   
+ }
  
     
     // Definição das variáveis para armazenar as propriedades das cidades

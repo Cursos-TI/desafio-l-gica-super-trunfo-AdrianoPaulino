@@ -1,4 +1,5 @@
 #include <stdio.h>
+//#include <cppbuild>
 
 //contas globais
 #define MAX_CARTAS 100
@@ -27,21 +28,21 @@ void limparBufferEntrada(){
     int c;
     while ((c = getchar())!='\n' && c!=EOF);
 }
+//printf("Desafio Super Trunfo - Paises!\n")...nao sei porque o Sergio Cardoso pediu para colocar esta linha...parece outro desafio???;
 
 int main() {
-    //printf("Desafio Super Trunfo - Paises!\n")...nao sei porque o Sergio Cardoso pediu para colocar esta linha...parece outro desafio???;
     struct Cartas Cadastro[MAX_CARTAS];
     int totalCartas = 0;
     int opcao;    
 };
    
  //laço menu em tela
- printf('=====================================');
- printf('  CADASTRO - PARTE 1\n');
- printf('1-Cadastrar nova cidade\n');
- printf('2-Listar todas cidades\n');
- printf('0-Sair');
- printf('Escolha a opção\n');
+ printf("=====================================");
+ printf("  CADASTRO - PARTE 1\n");
+ printf("1-Cadastrar nova cidade\n");
+ printf("2-Listar todas cidades\n");
+ printf("0-Sair");
+ printf("Escolha a opção\n");
 
  //Lê o menu que foi digitado e, depois com comando limparBufferEntrada limpa o buffer de entrada (nova precaução)
  scanf('%d', &opcao);

@@ -1,117 +1,181 @@
 #include <stdio.h>
-//#include <cppbuild>
+#include <string.h>
 
-//contas globais
+// Definições globais
 #define MAX_CARTAS 100
 #define TAM_STRING 50
 
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
- //Descrição do problema: O código não possui as variáveis necessárias para armazenar...
-    // ...os dados das duas cartas (Estado, Código, Nome da Cidade, População, Área, PIB, Nº Pontos Turísticos).
-
-//definição de esttutura
-struct Cartas{
+// Definição da estrutura
+struct Cartas {
     char Cidade[TAM_STRING];
     char Estado[TAM_STRING];
-    char Codigo[10]; 
-    char Populacao[TAM_STRING];
-    char Area[30];
-    int PIB[30];
-    int Numero_Pontos_Turísticos[10];
+    int Codigo;
+    long long Populacao;
+    double Area;
+    double PIB;
+    int Numero_Pontos_Turisticos;
 };
 
-//limpar buffer
-void limparBufferEntrada(){
+// Limpar o buffer de entrada
+void limparBufferEntrada() {
     int c;
-    while ((c = getchar())!='\n' && c!=EOF);
+    while ((c = getchar()) != '\n' && c != EOF);
 }
-//printf("Desafio Super Trunfo - Paises!\n")...nao sei porque o Sergio Cardoso pediu para colocar esta linha...parece outro desafio???;
 
 int main() {
     struct Cartas Cadastro[MAX_CARTAS];
     int totalCartas = 0;
-    int opcao;    
-};
-   
- //laço menu em tela
- printf("=====================================");
- printf("  CADASTRO - PARTE 1\n");
- printf("1-Cadastrar nova cidade\n");
- printf("2-Listar todas cidades\n");
- printf("0-Sair");
- printf("Escolha a opção\n");
+    int opcao;
 
- //Lê o menu que foi digitado e, depois com comando limparBufferEntrada limpa o buffer de entrada (nova precaução)
- scanf('%d', &opcao);
- limparBufferEntrada();
+    do {
+        // Laço de menu
+        printf("\n=====================================\n");
+        printf("         CADASTRO - PARTE 1\n");
+        printf("=====================================\n");
+        printf("1-Cadastrar nova cidade\n");
+        printf("2-Listar todas as cidades\n");
+        printf("3-Comparar duas cidades\n");
+        printf("0-Sair\n");
+        printf("Escolha a opcao: ");
 
- //verificando total de cadastros efetuados
- switch (opcao)
- {
- case 1: //cadastro da cidade
- printf('----Cadastro da Cidade\n\n');
+        // Lê a opção digitada
+        if (scanf("%d", &opcao) != 1) {
+            printf("Opcao invalida. Por favor, digite um numero.\n");
+            limparBufferEntrada();
+            continue;
+        }
+        limparBufferEntrada();
 
- if (totalCartas < MAX_CARTAS){
-    printf('Digite nome da Cidade:   ');
-    fgets(Cadastro[totalCartas].Cidade, TAM_STRING, stdin);
+        switch (opcao) {
+            case 1: {
+                printf("---- Cadastro da Cidade ----\n\n");
+                if (totalCartas < MAX_CARTAS) {
+                    printf("Digite o nome da Cidade: ");
+                    fgets(Cadastro[totalCartas].Cidade, TAM_STRING, stdin);
+                    strtok(Cadastro[totalCartas].Cidade, "\n"); // Remove a quebra de linha
 
-    printf('Digite nome da Estado:   ');
-    fgets(Cadastro[totalCartas].Estado, TAM_STRING, stdin);
+                    printf("Digite o nome do Estado: ");
+                    fgets(Cadastro[totalCartas].Estado, TAM_STRING, stdin);
+                    strtok(Cadastro[totalCartas].Estado, "\n");
 
-    printf('Digite nome da Codigo:   '); //acredito que não precisa deste item, entendo ser automatico? mas coloquei assim mesmo
-    fgets(Cadastro[totalCartas].Codigo, TAM_STRING, stdin);
+                    printf("Digite o Codigo da cidade (numero): ");
+                    scanf("%d", &Cadastro[totalCartas].Codigo);
+                    limparBufferEntrada();
 
-    printf('Digite nome da População:   ');
-    fgets(Cadastro[totalCartas].Populacao, TAM_STRING, stdin);
+                    printf("Digite a Populacao (numero): ");
+                    scanf("%lld", &Cadastro[totalCartas].Populacao);
+                    limparBufferEntrada();
 
-    printf('Digite nome da Area:   ');
-    fgets(Cadastro[totalCartas].Area, TAM_STRING, stdin);
+                    printf("Digite a Area em km^2 (numero): ");
+                    scanf("%lf", &Cadastro[totalCartas].Area);
+                    limparBufferEntrada();
 
-    printf('Digite nome da PIB:   ');
-    fgets(Cadastro[totalCartas].PIB, TAM_STRING, stdin);
+                    printf("Digite o PIB em bilhoes (numero): ");
+                    scanf("%lf", &Cadastro[totalCartas].PIB);
+                    limparBufferEntrada();
 
-    printf('Digite nome da Número de pontos turisticos:   ');
-    fgets(Cadastro[totalCartas].Numero_Pontos_Turísticos, TAM_STRING, stdin);
-   
- }
- 
-    
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Você pode utilizar o código do primeiro desafio
-   
+                    printf("Digite o Numero de Pontos Turisticos (numero): ");
+                    scanf("%d", &Cadastro[totalCartas].Numero_Pontos_Turisticos);
+                    limparBufferEntrada();
 
-    
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    // utilize o código do primeiro desafio
+                    totalCartas++;
+                    printf("\nCidade cadastrada com sucesso!\n");
+                } else {
+                    printf("Limite maximo de cartas atingido.\n");
+                }
+                break;
+            }
+            case 2: {
+                printf("---- Cidades Cadastradas ----\n\n");
+                if (totalCartas == 0) {
+                    printf("Nenhuma cidade cadastrada ainda.\n");
+                } else {
+                    for (int i = 0; i < totalCartas; i++) {
+                        printf("Cidade: %s\n", Cadastro[i].Cidade);
+                        printf("Estado: %s\n", Cadastro[i].Estado);
+                        printf("Codigo: %d\n", Cadastro[i].Codigo);
+                        printf("Populacao: %lld\n", Cadastro[i].Populacao);
+                        printf("Area: %.2f km^2\n", Cadastro[i].Area);
+                        printf("PIB: %.2f bilhoes\n", Cadastro[i].PIB);
+                        printf("Pontos Turisticos: %d\n", Cadastro[i].Numero_Pontos_Turisticos);
+                        printf("-----------------------------\n");
+                    }
+                }
+                break;
+            }
+            case 3: {
+                if (totalCartas < 2) {
+                    printf("E necessario cadastrar pelo menos duas cidades para comparar.\n");
+                } else {
+                    int indice1, indice2;
+                    printf("---- Comparacao de Cidades ----\n\n");
+                    printf("Cidades disponiveis:\n");
+                    for(int i = 0; i < totalCartas; i++) {
+                        printf("%d: %s\n", i, Cadastro[i].Cidade);
+                    }
 
-    // Exemplo:
-    // printf("Digite o código da cidade: ");
-    // scanf("%s", codigo);
-    // 
-    // (Repita para cada propriedade)
+                    printf("Escolha o indice da primeira cidade: ");
+                    scanf("%d", &indice1);
+                    limparBufferEntrada();
+                    printf("Escolha o indice da segunda cidade: ");
+                    scanf("%d", &indice2);
+                    limparBufferEntrada();
 
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
+                    if (indice1 >= 0 && indice1 < totalCartas && indice2 >= 0 && indice2 < totalCartas && indice1 != indice2) {
+                        printf("\nComparando %s e %s...\n\n", Cadastro[indice1].Cidade, Cadastro[indice2].Cidade);
 
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
+                        printf("Resultado da comparacao:\n");
+                        printf("=====================================\n");
+                        // Comparação de População
+                        if (Cadastro[indice1].Populacao > Cadastro[indice2].Populacao) {
+                            printf("-> Populacao: %s tem a maior populacao.\n", Cadastro[indice1].Cidade);
+                        } else if (Cadastro[indice2].Populacao > Cadastro[indice1].Populacao) {
+                            printf("-> Populacao: %s tem a maior populacao.\n", Cadastro[indice2].Cidade);
+                        } else {
+                            printf("-> Populacao: As cidades tem a mesma populacao.\n");
+                        }
 
-    // Exibição dos Resultados:
-    // Após realizar as comparações, exiba os resultados para o usuário.
-    // Certifique-se de que o sistema mostre claramente qual carta venceu e com base em qual atributo.
+                        // Comparação de Área
+                        if (Cadastro[indice1].Area > Cadastro[indice2].Area) {
+                            printf("-> Area: %s tem a maior area.\n", Cadastro[indice1].Cidade);
+                        } else if (Cadastro[indice2].Area > Cadastro[indice1].Area) {
+                            printf("-> Area: %s tem a maior area.\n", Cadastro[indice2].Cidade);
+                        } else {
+                            printf("-> Area: As cidades tem a mesma area.\n");
+                        }
 
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
+                        // Comparação de PIB
+                        if (Cadastro[indice1].PIB > Cadastro[indice2].PIB) {
+                            printf("-> PIB: %s tem o maior PIB.\n", Cadastro[indice1].Cidade);
+                        } else if (Cadastro[indice2].PIB > Cadastro[indice1].PIB) {
+                            printf("-> PIB: %s tem o maior PIB.\n", Cadastro[indice2].Cidade);
+                        } else {
+                            printf("-> PIB: As cidades tem o mesmo PIB.\n");
+                        }
 
+                        // Comparação de Pontos Turísticos
+                        if (Cadastro[indice1].Numero_Pontos_Turisticos > Cadastro[indice2].Numero_Pontos_Turisticos) {
+                            printf("-> Pontos Turisticos: %s tem mais pontos turisticos.\n", Cadastro[indice1].Cidade);
+                        } else if (Cadastro[indice2].Numero_Pontos_Turisticos > Cadastro[indice1].Numero_Pontos_Turisticos) {
+                            printf("-> Pontos Turisticos: %s tem mais pontos turisticos.\n", Cadastro[indice2].Cidade);
+                        } else {
+                            printf("-> Pontos Turisticos: As cidades tem o mesmo numero de pontos turisticos.\n");
+                        }
+                        printf("=====================================\n");
 
+                    } else {
+                        printf("Indices invalidos. Por favor, escolha indices validos das cidades cadastradas.\n");
+                    }
+                }
+                break;
+            }
+            case 0:
+                printf("\nSaindo do programa. Ate mais!\n");
+                break;
+            default:
+                printf("\nOpcao invalida. Tente novamente.\n");
+        }
+    } while (opcao != 0);
 
+    return 0;
+}
